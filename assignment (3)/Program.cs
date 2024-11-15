@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,37 +7,45 @@ using System.Threading.Tasks;
 
 namespace assignment__3_
 {
-    class Student
+    class useraccount
     {
-        public string id;
-        public string name;
-        public double mark;
+        public string email;
+        public string username;
+        public string password;
+        public useraccount(string email, string username, string password)
+        {
+            this.email = email;
+            this.username = username;
+            this.password = password;
+        }
+        public useraccount(useraccount u)
+        {
+            email = u.email;
+            username = u.username;
+            password = u.password;
+        }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<Student> s = new List<Student>();
-            Console.WriteLine("input 5-10 students");
-            int x = int.Parse(Console.ReadLine());
-            if (x >= 5 && x <= 10)
+            ArrayList a = new ArrayList();
+            useraccount user = new useraccount("mustafa@gmail.com", "mustafa", "1234");
+            a.Add(user);
+            Console.WriteLine("enter username");
+            string un = Console.ReadLine();
+            Console.WriteLine("enter password");
+            string pa = Console.ReadLine();
+            foreach (useraccount ac in a)
             {
-                for (int i = 0; i < x; i++)
+                if (ac.username == un && ac.password == pa)
                 {
-                    Student st = new Student();
-                    Console.WriteLine("enetr the id");
-                    st.id = Console.ReadLine();
-                    Console.WriteLine("enter the name");
-                    st.name = Console.ReadLine();
-                    Console.WriteLine("enter the mark");
-                    st.mark = double.Parse(Console.ReadLine());
-                    s.Add(st);
+                    Console.WriteLine("Correct");
                 }
-            }
-            for (int i = 0; i < s.Count; i++)
-            {
-                if (s[i].mark >= 50)
-                    Console.WriteLine(s[i].name);
+                else
+                {
+                    Console.WriteLine("invalid");
+                }
             }
             Console.ReadLine();
         }
